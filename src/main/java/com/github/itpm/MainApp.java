@@ -1,6 +1,7 @@
 package com.github.itpm;
 
 import com.github.itpm.controller.SessionController;
+import com.github.itpm.controller.StudentController;
 import com.github.itpm.controller.TeacherController;
 import jakarta.ws.rs.core.UriBuilder;
 import org.eclipse.jetty.server.Server;
@@ -20,6 +21,7 @@ public class MainApp {
         final ResourceConfig config = new ResourceConfig()
                 .registerInstances(new TeacherController())
                 .registerInstances(new SessionController())
+                .registerInstances(new StudentController())
                 .register(CORSResponseFilter.class);
 
         return JettyHttpContainerFactory.createServer(UriBuilder.fromUri(BASE_URI).port(PORT).build(), config);
