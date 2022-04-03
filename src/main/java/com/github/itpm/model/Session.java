@@ -21,6 +21,17 @@ public class Session {
     @Column(name = "link")
     private String link;
 
+    public Session(String name, String date, String time, String link) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.link = link;
+    }
+
+    public Session() {
+
+    }
+
     public int getId() {
         return id;
     }
