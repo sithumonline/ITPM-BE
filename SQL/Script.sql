@@ -73,3 +73,26 @@ VALUES
 ("student 3", "1990-01-01", "address 3", "phone 3"),
 ("student 4", "1990-01-01", "address 4", "phone 4"),
 ("student 5", "1990-01-01", "address 5", "phone 5");
+
+# ID
+# Title
+# Author
+# Subject
+# Grade
+CREATE TABLE material(
+    id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    grade VARCHAR(100) NOT NULL,
+
+    CONSTRAINT pk_book PRIMARY KEY(id)
+);
+
+INSERT INTO material(title,author,subject,grade)
+VALUES
+("book 1", "author 1", "subject 1", "grade 1"),
+("book 2", "author 2", "subject 2", "grade 2"),
+("book 3", "author 3", "subject 3", "grade 3"),
+("book 4", "author 4", "subject 4", "grade 4"),
+("book 5", "author 5", "subject 5", "grade 5");

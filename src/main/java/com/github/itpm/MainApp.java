@@ -1,5 +1,6 @@
 package com.github.itpm;
 
+import com.github.itpm.controller.MaterialController;
 import com.github.itpm.controller.SessionController;
 import com.github.itpm.controller.StudentController;
 import com.github.itpm.controller.TeacherController;
@@ -22,6 +23,7 @@ public class MainApp {
                 .registerInstances(new TeacherController())
                 .registerInstances(new SessionController())
                 .registerInstances(new StudentController())
+                .registerInstances(new MaterialController())
                 .register(CORSResponseFilter.class);
 
         return JettyHttpContainerFactory.createServer(UriBuilder.fromUri(BASE_URI).port(PORT).build(), config);
