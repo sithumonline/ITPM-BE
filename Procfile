@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* com.github.itpm.MainApp
+web: mvn exec:java -Dexec.mainClass="com.github.itpm.MainApp"
