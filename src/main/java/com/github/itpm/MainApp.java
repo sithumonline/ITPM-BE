@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class MainApp {
 
-    public static final String BASE_URI = "http://localhost/";
+    public static final String BASE_URI = "http://0.0.0.0/";
     public static final int PORT = System.getenv("PORT") != null ? Integer.parseInt(System.getenv("PORT")) : 8080;
 
     public static Server startServer() {
