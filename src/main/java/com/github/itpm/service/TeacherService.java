@@ -193,4 +193,43 @@ public class TeacherService {
 				.build();
 	}
 
+    public Response searchTeacher(String name) {
+		List<Teacher> teachers = new ArrayList<Teacher> ();
+
+		try {
+			Connection con = connection.getConnection();
+			if (con == null) return Response
+					.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("DataBase connectivity Error")
+					.build();
+
+			String query = "select * from teacher where name like '%"+name+"%'";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name1 = rs.getString("name");
+				String dob = rs.getString("dob");
+				String address = rs.getString("address");
+				String phone = rs.getString("phone");
+				Teacher teacher = new Teacher(name1, dob, address, phone);
+				teacher.setId(id);
+				teachers.add(teacher);
+
+			}
+			con.close();
+
+		} catch (Exception e) {
+			return Response
+					.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity(e)
+					.build();
+		}
+
+		return Response
+				.status(Response.Status.OK)
+				.entity(teachers)
+				.build();
+	}
 }
