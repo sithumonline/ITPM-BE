@@ -69,4 +69,12 @@ public class SessionController {
     public Response deleteById(@PathParam("sessionId") Integer sessionId) {
         return sessionService.deleteSession(sessionId);
     }
+
+    @GET
+    @Path("/search")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response searchSession(@QueryParam("name") String name) {
+        return sessionService.searchSession(name);
+    }
 }

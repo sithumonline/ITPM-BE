@@ -190,4 +190,42 @@ public class SessionService {
                 .build();
     }
 
+    public Response searchSession(String name) {
+        List<Session> sessions = new ArrayList<>();
+
+        try {
+            Connection con = connection.getConnection();
+            if (con == null) return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("DataBase connectivity Error")
+                    .build();
+
+            String query = "select * from session where name like '%" + name + "%'";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name1 = rs.getString("name");
+                String date = rs.getString("date");
+                String time = rs.getString("time");
+                String link = rs.getString("link");
+                Session session = new Session(name1, date, time, link);
+                session.setId(id);
+                sessions.add(session);
+            }
+            con.close();
+
+        } catch (Exception e) {
+            return Response
+                    .status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(e)
+                    .build();
+        }
+
+        return Response
+                .status(Response.Status.OK)
+                .entity(sessions)
+                .build();
+    }
 }
