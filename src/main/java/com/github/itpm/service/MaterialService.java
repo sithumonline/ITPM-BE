@@ -193,4 +193,43 @@ public class MaterialService {
 				.build();
 	}
 
+    public Response searchMaterial(String name) {
+		List<Material> materials = new ArrayList<Material>();
+
+		try {
+			Connection con = connection.getConnection();
+			if (con == null) return Response
+					.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity("DataBase connectivity Error")
+					.build();
+
+			String query = "select * from material where title like '%" + name + "%'";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String author = rs.getString("author");
+				String subject = rs.getString("subject");
+				String grade = rs.getString("grade");
+				Material material = new Material(title, author, subject, grade);
+				material.setId(id);
+				materials.add(material);
+
+			}
+			con.close();
+
+		} catch (Exception e) {
+			return Response
+					.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity(e)
+					.build();
+		}
+
+		return Response
+				.status(Response.Status.OK)
+				.entity(materials)
+				.build();
+	}
 }

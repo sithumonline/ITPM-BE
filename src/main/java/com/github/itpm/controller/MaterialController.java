@@ -69,4 +69,12 @@ public class MaterialController {
     public Response deleteById(@PathParam("materialId") Integer materialId) {
         return materialService.deleteMaterial(materialId);
     }
+
+    @GET
+    @Path("/search")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response searchMaterial(@QueryParam("name") String name) {
+        return materialService.searchMaterial(name);
+    }
 }
