@@ -96,3 +96,6 @@ VALUES
 ("book 3", "author 3", "subject 3", "grade 3"),
 ("book 4", "author 4", "subject 4", "grade 4"),
 ("book 5", "author 5", "subject 5", "grade 5");
+
+# change material's author size to 1000
+ALTER TABLE material MODIFY author VARCHAR(1000);
