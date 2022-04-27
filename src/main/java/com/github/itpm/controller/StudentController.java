@@ -69,4 +69,12 @@ public class StudentController {
     public Response deleteById(@PathParam("studentId") Integer studentId) {
         return studentService.deleteStudent(studentId);
     }
+
+    @GET
+    @Path("/search")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response searchStudent(@QueryParam("name") String name) {
+        return studentService.searchStudent(name);
+    }
 }
